@@ -3,6 +3,7 @@ import './App.scss';
 import Spinner from './components/spinner/Spinner';
 import Overlay from './components/overlay';
 import Book from './components/book';
+import BookGrid from './components/bookGrid';
 
 class App extends Component {
   state = {
@@ -11,7 +12,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("https://gist.githubusercontent.com/BartoszTermena/68b9ed87dedf14f59e515d49fb9afba8/raw/9f78bc14d466f12203e7d414a8cd734c94cd6f1f/myBooks.json")
+    fetch("https://gist.githubusercontent.com/BartoszTermena/1850d8b12f0be467a9e55c65275e7b52/raw/8a7419555e923518fbbcde36576b1036dd097290/myBooks.json")
     .then(res => res.json())
     .then(json => {
       this.setState({
@@ -34,11 +35,13 @@ class App extends Component {
     } else {
       return (
         <div className="app">
-          {books.map(book => (
-            <Book 
-            {...book} 
-            key={book.id}/>
-          ))}
+          <BookGrid>
+            {books.map(book => (
+              <Book 
+              {...book} 
+              key={book.id}/>
+            ))}
+          </BookGrid>
         </div>
       );
     }
